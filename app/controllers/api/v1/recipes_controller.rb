@@ -1,6 +1,10 @@
-class RecipesController < ApplicationController
+class Api::V1::RecipesController < ApplicationController
   def index
-    if recipe_params
+    if recipe_params[:country] == ''
+      {
+        "data": []
+      } 
+    elsif recipe_params[:country]
       # Call on the recipe API service to get all recipes from query param
       # Serialize the response
     else
