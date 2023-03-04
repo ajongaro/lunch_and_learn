@@ -5,8 +5,8 @@ class Api::V1::RecipesController < ApplicationController
         "data": []
       } 
     elsif recipe_params[:country]
-      # Call on the recipe API service to get all recipes from query param
-      # Serialize the response
+      recipes = RecipeFacade.get_recipes_for(recipe_params[:country])
+      render json: RecipeSerializer.new(recipes)
     else
       # If no country param, call REST Countries API to get random country
       # Call on the recipe API service to get all recipes from random country

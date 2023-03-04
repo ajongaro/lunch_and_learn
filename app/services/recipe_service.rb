@@ -15,5 +15,6 @@ class RecipeService
     end
     parse(response)
   end
+
   private_class_method :conn, :parse
 end
