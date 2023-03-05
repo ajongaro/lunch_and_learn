@@ -27,3 +27,6 @@
 
 # Coverage
 coverage
+
+# VCR Files
+/spec/fixtures

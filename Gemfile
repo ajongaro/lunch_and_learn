@@ -28,6 +28,7 @@ group :development, :test do
   gem 'pry'   
   gem 'rspec-rails'
   gem 'vcr'
+  gem 'webmock'
   gem 'faraday'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
