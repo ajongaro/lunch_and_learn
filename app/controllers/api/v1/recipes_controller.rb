@@ -6,11 +6,11 @@ class Api::V1::RecipesController < ApplicationController
       }
     elsif recipe_params[:country]
       recipes = RecipeFacade.recipes_for(recipe_params[:country])
-      render json: RecipeSerializer.new(recipes)
+      render json: RecipeSerializer.new(recipes).serializable_hash
     else
       country = CountryService.random_country
       recipes = RecipeFacade.recipes_for(country)
-      render json: RecipeSerializer.new(recipes)
+      render json: RecipeSerializer.new(recipes).serializable_hash
     end
   end
 
