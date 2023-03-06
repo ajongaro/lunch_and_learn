@@ -6,6 +6,7 @@ RSpec.describe CountryService do
       country = CountryService.random_country
 
       expect(country).to be_a(String)
+      expect(country).to_not eq("")
     end
   end
 end
