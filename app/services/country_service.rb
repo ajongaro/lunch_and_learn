@@ -12,5 +12,9 @@ class CountryService
     parse(response).sample[:name][:common]
   end
 
+  def self.capital_coordinates_for(country)
+    response = conn.get("/v3.1/name/#{country}")
+    parse(response).first[:capitalInfo][:latlng]
+  end
   private_class_method :conn, :parse
 end
