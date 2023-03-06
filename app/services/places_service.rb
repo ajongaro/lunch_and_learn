@@ -1,20 +1,14 @@
 class PlacesService
   def self.conn
-    Faraday.new(url: 'FIX ME places.com') do |req|
-      req.params['type'] = 'public'
-      req.params['app_id'] = ENV['EDAMAM_APP_ID']
-      req.params['app_key'] = ENV['EDAMAM_APP_KEY']
-    end
+    Faraday.new(url: 'https://api.geoapify.com')
   end
 
   def self.parse(response)
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def self.recipes_for(country)
-    response = conn.get('api/recipes/v2/') do |req|
-      req.params['q'] = country
-    end
+  def self.tourist_attractions_for(latlng)
+    response = conn.get("/v2/places/?filter=circle:#{latlng[1]},#{latlng[0]},20000&apiKey=#{ENV['PLACES_KEY']}&categories=tourism.sights")
     parse(response)
   end
 
