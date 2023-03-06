@@ -23,5 +23,19 @@ RSpec.describe 'Tourist Sights API Endpoint' do
       expect(first_result[:attributes]).to have_key(:address)
       expect(first_result[:attributes]).to have_key(:place_id)
     end
+
+    it 'has correct information', :vcr do
+      get '/api/v1/tourist_sights?country=spain'
+
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      first_result = parsed_response[:data].first
+
+      expect(first_result[:id]).to eq(nil)
+      expect(first_result[:type]).to eq('attraction')
+      expect(first_result[:attributes]).to be_a(Hash)
+      expect(first_result[:attributes][:name]).to eq('Templo de Debod')
+      expect(first_result[:attributes][:address]).to eq('The Temple of Debod, Calle de Ferraz, 1, 28008 Madrid, Spain')
+      expect(first_result[:attributes][:place_id]).to eq('5133fabcb202be0dc059a196bfd546364440f00101f901112862000000000092030f54656d706c6f206465204465626f64')
+    end
   end
 end
