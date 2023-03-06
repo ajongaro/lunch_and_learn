@@ -10,7 +10,7 @@ RSpec.describe 'Tourist Sights API Endpoint' do
       expect(parsed_response).to have_key(:data)
     end
 
-    xit 'has correct keys' do
+    it 'has correct keys', :vcr do
       get '/api/v1/tourist_sights?country=france'
 
       parsed_response = JSON.parse(response.body, symbolize_names: true)
