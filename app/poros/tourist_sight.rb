@@ -4,7 +4,6 @@ class TouristSight
 
   def initialize(data)
     properties = data[:properties]
-
     @id = nil 
     @type = 'tourist_sight'
     @name = properties[:name]

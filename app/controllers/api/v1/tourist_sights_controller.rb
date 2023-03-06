@@ -5,6 +5,7 @@ class Api::V1::TouristSightsController < ApplicationController
     coordinates = CountryService.capital_coordinates_for(params[:country])
     # search for tourist attractions within 20000 of capital city coordinates
     attractions = PlacesFacade.tourist_sights_for(coordinates) 
+    render json: AttractionSerializer.new(attractions)
     # return tourist attractions
   end
 end
