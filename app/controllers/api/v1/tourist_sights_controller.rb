@@ -1,4 +1,3 @@
-
 class Api::V1::TouristSightsController < ApplicationController
   def index
     # get lat/long of capital city of country from countries API
